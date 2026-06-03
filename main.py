@@ -216,7 +216,8 @@ class SistemReservasiFCFS(QMainWindow):
             return
         
         # Hapus dari depan antrian (dequeue)
-        hapus = self.antrian_reservasi.popleft()
+        tercepat = min(self.antrian_reservasi, key= lambda x: (x['waktu_datang'], x['timestamp']))
+        self.antrian_reservasi.remove(tercepat)
         self.update_daftar_reservasi()
         self.refresh_tabel_input()
 
